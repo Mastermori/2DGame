@@ -9,12 +9,11 @@ import java.util.Random;
 
 import com.shadystorm.entities.Particle;
 import com.shadystorm.entities.Player;
+import com.shadystorm.envroiment.Floor;
 import com.shadystorm.gamestate.GameState;
 import com.shadystorm.gamestate.GameStateManager;
-import com.shadystorm.guielements.Button;
 import com.shadystorm.handler.GUIHandler;
 import com.shadystorm.handler.Handler;
-import com.shadystorm.libary.Draw;
 import com.shadystorm.libary.KeyInput;
 import com.shadystorm.window.Window;
 
@@ -36,7 +35,7 @@ public class Main extends Canvas implements Runnable{
 	
 	//Creates the Player and a second Player for testing purposes
 	private static Player player;
-	private static Player player2;
+	private static Floor floor;
 	
 	//Initializes the particle timer variables
 	int particleTimer = 10;
@@ -52,19 +51,21 @@ public class Main extends Canvas implements Runnable{
 		//Initializes created objects
 		r = new Random();
 		
-		GameStateManager.setGameState(GameState.MainMenu);
-		
-		GUIHandler.registerObject(new Button(new Rectangle(100, 100, 200, 50), "Test").setColor(Color.BLACK).hide(false));
+		startGame();
+		//GUIHandler.registerObject(new Button(new Rectangle(100, 100, 200, 50), "Test").setColor(Color.BLACK).hide(false));
 		
 	}
 	
-	public static void startRound1(){
+	public static void startGame(){
+		GameStateManager.setGameState(GameState.InGame);
+		
 		//Initializes player and player2
 		player = new Player(new Rectangle(100, 100, 50, 50));
-		player2 = new Player(new Rectangle(150, 100, 50, 50));
+		floor = new Floor(10, 100, 100, 100);
+		
 		//Adds the initialized GameObjects to the handler
 		Handler.registerObject(player.setID(1));
-		Handler.registerObject(player2.setID(2).setColor(Color.RED));
+		EnvHandler.registerObject(floor.setID(1));
 	}
 	
 	//The start() method is used to start the main thread
@@ -131,7 +132,7 @@ public class Main extends Canvas implements Runnable{
 		//Particle system
 		if(particleTimer <= 0){
 			//Adds a trail of particles to player1
-			Handler.registerObject(new Particle(player, r.nextFloat() * (4.5f - 2f) + 2f, r.nextFloat() * (5 + 5) - 5, r.nextFloat() * (5 + 5) - 5));
+			Handler.registerObject(new Particle(player, r.nextFloat() * (4.5f - 2f) + 2f, r.nextFloat() * (6 + 6) - 6, r.nextFloat() * (6 + 6) - 6));
 			particleTimer = particleMax;
 		}else{
 			particleTimer -= 1;

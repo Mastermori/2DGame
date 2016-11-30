@@ -3,7 +3,6 @@ package com.shadystorm.guielements;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.function.Consumer;
 
 import com.shadystorm.main.Main;
 

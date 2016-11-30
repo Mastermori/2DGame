@@ -3,7 +3,6 @@ package com.shadystorm.entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 
 import com.shadystorm.handler.Type;
 import com.shadystorm.libary.Draw;

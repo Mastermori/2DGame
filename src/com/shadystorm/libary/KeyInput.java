@@ -3,8 +3,6 @@ package com.shadystorm.libary;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.shadystorm.handler.Handler;
-import com.shadystorm.handler.Type;
 import com.shadystorm.main.Main;
 
 public class KeyInput implements KeyListener{
